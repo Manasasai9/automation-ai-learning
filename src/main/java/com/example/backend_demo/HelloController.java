@@ -1,11 +1,18 @@
 package com.example.backend_demo;
+import com.example.backend_demo.service.LoanService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
     public class HelloController {
 
-        @GetMapping("/hello")
+    private final LoanService loanService;
+
+    public HelloController(LoanService loanService) {
+        this.loanService = loanService;
+    }
+
+    @GetMapping("/hello")
         public String sayHello() {
             return "Hello from Day 3!";
         }
@@ -24,11 +31,9 @@ import org.springframework.web.bind.annotation.*;
         @PostMapping("/loan")
         public String createLoanPost( @Valid @RequestBody LoanRequest loanRequest) {
 
-            return "Loan request received for customer "
-                    + loanRequest.getCustomerId()
-                    + ", amount " + loanRequest.getAmount()
-                    + ", product " + loanRequest.getProduct();
+            return loanService.processLoan(loanRequest);
         }
+
 
     }
 
