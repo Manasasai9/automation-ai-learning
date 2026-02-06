@@ -1,0 +1,10 @@
+# Day 17 – Non-Functional Testing
+
+## What I learned
+- Performance testing focuses on regressions, not peak numbers
+- Resilience means failing fast and clearly
+- Security starts with validation and clean error handling
+- QA Architects think in terms of system trust, not tools
+
+## Architect Insight
+Non-functional quality must be designed, not retrofitted.
