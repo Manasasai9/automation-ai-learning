@@ -1,0 +1,96 @@
+# Days 14–16 – Quality Gates, Test Strategy & Observability
+
+This document summarizes learnings from Days 14, 15, and 16, focusing on how Automation and QA Architects ensure quality, stability, and production readiness in backend systems.
+
+---
+
+## Day 14 – CI/CD Quality Gates
+
+### Key Concepts
+- Quality gates are rules that **block bad code from progressing** in the pipeline.
+- Tests that protect consumers and business logic must **fail the build** if broken.
+
+### Quality Gates Defined
+The following test layers should block a build if they fail:
+- Service / unit tests (business logic correctness)
+- API functional tests (integration correctness)
+- API contract tests (consumer safety)
+
+### Key Insight
+Tools (Jenkins, GitHub Actions, etc.) are secondary.  
+**The rules defining what must pass are more important than the pipeline itself.**
+
+---
+
+## Day 15 – Test Strategy at Scale
+
+### Core Principle
+Not everything should be automated.  
+Automation must be **selective, layered, and value-driven**.
+
+### Automation Pyramid
+- Most tests at service/unit level (fast, stable)
+- Fewer API tests (integration confidence)
+- Minimal UI tests (slow, brittle)
+
+### What to Automate
+- Business rules
+- Validation and negative scenarios
+- API contracts
+- Error handling
+
+### What to Avoid Over-Automating
+- UI flows
+- Visual checks
+- Rare edge cases with low ROI
+
+### AI in Automation
+AI is most effective when used to:
+- Generate service-level test cases
+- Explore negative scenarios
+- Analyze failures
+
+AI is **not** suitable for blind UI automation or guessing API behavior.
+
+---
+
+## Day 16 – Observability & Testability
+
+### Observability Pillars
+- Logs: what happened
+- Metrics: how often and how slow
+- Health checks: is the system alive
+
+### Logging
+- Errors should be clean and structured for clients
+- Technical details must be logged internally
+- Stack traces should never leak to consumers
+
+### Metrics
+- Track request counts, error rates, and response times
+- Metrics enable trend analysis and early problem detection
+
+### Health Checks
+- Health endpoints are essential for load balancers and monitoring
+- A service must be able to declare its own health and readiness
+
+### QA Architect Responsibility
+QA and Automation Architects validate:
+- Failures are observable
+- Errors are debuggable
+- Systems are testable in production
+
+---
+
+## Key Takeaways
+
+- Quality gates protect trust by stopping breaking changes early
+- Most automation value lives below the UI layer
+- Contract tests protect consumers, not implementations
+- Observability complements testing by catching issues post-release
+
+---
+
+## One-Sentence Summary
+
+Quality engineering combines automation, contracts, quality gates, and observability to ensure systems are safe to change and easy to operate in production.
