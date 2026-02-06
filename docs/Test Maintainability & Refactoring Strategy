@@ -1,0 +1,10 @@
+# Day 19 – Test Maintainability & Refactoring Strategy
+
+## What I learned
+- Test suites fail due to poor design, not scale
+- Contract tests protect automation from refactoring churn
+- Tests should express intent clearly
+- Test refactoring should follow the same discipline as production code
+
+## Architect Insight
+Maintainable tests enable teams to move fast without fear.
