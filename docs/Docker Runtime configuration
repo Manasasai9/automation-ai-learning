@@ -1,0 +1,20 @@
+Docker Runtime Configuration
+
+## What I did
+- Ran container on a different host port:
+  docker run -p 8085:9090 backend-demo
+- Verified application using new port
+- Ran container in detached mode:
+  docker run -d -p 9090:9090 backend-demo
+- Listed running containers using:
+  docker ps
+- Stopped container using:
+  docker stop <container_id>
+
+## Key Learnings
+- Port mapping allows multiple environments to run the same container
+- Detached mode enables background execution
+- Container lifecycle can be managed using docker commands
+
+## Architect Insight
+Understanding container runtime behavior helps in managing applications across development, testing, and production environments.
