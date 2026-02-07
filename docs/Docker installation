@@ -1,0 +1,19 @@
+ Docker Containerization
+
+## What I did
+- Installed Docker Desktop
+- Built Spring Boot project JAR using Maven
+- Created a Dockerfile for the application
+- Built Docker image using:
+  docker build -t backend-demo .
+- Ran the container using:
+  docker run -p 9090:9090 backend-demo
+- Verified application endpoints from browser/Postman
+
+## Key Learnings
+- Docker packages the application with its runtime environment
+- Containers ensure consistent execution across local, test, and production environments
+- Port mapping allows accessing container services from the host machine
+
+## Architect Insight
+Containerization improves deployment reliability and is commonly used in modern CI/CD pipelines and cloud environments.
