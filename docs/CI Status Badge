@@ -1,0 +1,8 @@
+CI Status Badge
+
+- Added GitHub Actions status badge to README
+- Badge reflects real-time build and test status
+- Improves repository visibility and professionalism
+
+## Insight
+Status badges provide quick visibility into project health and CI stability.
