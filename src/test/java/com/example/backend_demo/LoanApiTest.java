@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import static org.hamcrest.Matchers.*;
 
 import java.util.stream.Stream;
 
@@ -65,4 +66,28 @@ class LoanApiTest {
                 .then()
                 .statusCode(400);
     }
+
+
+    @Test
+    void shouldReturnStructuredErrorForInvalidRequest() {
+        String invalidJson = """
+            {
+              "amount": -100,
+              "product": "HOME"
+            }
+            """;
+
+        given()
+                .contentType("application/json")
+                .body(invalidJson)
+                .when()
+                .post("/loan")
+                .then()
+                .statusCode(400)
+                .contentType("application/json")
+                .body("status", equalTo(400))
+                .body("message", notNullValue())
+                .body("timestamp", notNullValue());
+    }
+
 }

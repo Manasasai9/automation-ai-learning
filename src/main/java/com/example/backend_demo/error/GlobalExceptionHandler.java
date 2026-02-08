@@ -6,21 +6,24 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.List;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiError> handleValidationException(
-            MethodArgumentNotValidException ex) {
+    public ResponseEntity<ApiError> handleValidationException(MethodArgumentNotValidException ex) {
 
-        String errorMessage = ex.getBindingResult()
-                .getAllErrors()
-                .get(0)
-                .getDefaultMessage();
+        List<FieldErrorDetail> details = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(err -> new FieldErrorDetail(err.getField(), err.getDefaultMessage()))
+                .toList();
 
         ApiError error = new ApiError(
                 HttpStatus.BAD_REQUEST.value(),
-                errorMessage
+                "Validation failed",
+                details
         );
 
         return ResponseEntity.badRequest().body(error);
